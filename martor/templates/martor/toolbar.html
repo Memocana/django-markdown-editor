@@ -1,16 +1,31 @@
 {% load i18n %}
+  <style>
+    .btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    .btn:hover {
+      cursor: pointer;
+    }
+    .btn-light {
+      border-radius: unset;
+    }
+    .nav-tabs .nav-item {
+      margin-bottom: 0px;
+    }
+  </style>
   <nav class="nav ml-auto justify-content-end martor-toolbar" style="font-size:12px">
-    <button type="button" class="nav-item btn markdown-selector markdown-bold" title="{% trans 'Bold' %} (Ctrl+B)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-bold" title="{% trans 'Bold' %} (Ctrl+B)">
       <i class="fa fa-bold fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-italic" title="{% trans 'Italic' %} (Ctrl+I)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-italic" title="{% trans 'Italic' %} (Ctrl+I)">
       <i class="fa fa-italic fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-horizontal" title="{% trans 'Horizontal Line' %} (Ctrl+H)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-horizontal" title="{% trans 'Horizontal Line' %} (Ctrl+H)">
       <i class="fa fa-minus fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn dropdown" title="{% trans 'Heading' %}">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: inherit">
+    <li type="button" class="nav-item dropdown" title="{% trans 'Heading' %}">
+      <a href="#" class="btn btn-light dropdown-toggle" data-toggle="dropdown" style="color: inherit">
         <i class="fa fa-header fa-fw"></i>
       </a>
       <div class="dropdown-menu">
@@ -18,48 +33,48 @@
         <div class="dropdown-item markdown-selector markdown-h2" title="">{% trans 'Heading' %} 2 (Ctrl+Alt+2)</div>
         <div class="dropdown-item markdown-selector markdown-h3" title="">{% trans 'Heading' %} 3 (Ctrl+Alt+3)</div>
       </div>
-    </button>
+    </li>
 
-    <button type="button" class="nav-item btn dropdown" title="{% trans 'Pre or Code' %}">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: inherit">
+    <li type="button" class="nav-item dropdown" title="{% trans 'Pre or Code' %}">
+      <a href="#" class="btn btn-light dropdown-toggle" data-toggle="dropdown" style="color: inherit">
         <i class="fa fa-code fa-fw"></i>
       </a>
       <div class="dropdown-menu">
         <div class="dropdown-item markdown-selector markdown-pre" title="">{% trans 'Pre' %} (Ctrl+Alt+P)</div>
         <div class="dropdown-item markdown-selector markdown-code" title="">{% trans 'Code' %} (Ctrl+Alt+C)</div>
       </div>
-    </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-blockquote" title="{% trans 'Quote' %} (Ctrl+Q)">
+    </li>
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-blockquote" title="{% trans 'Quote' %} (Ctrl+Q)">
       <i class="fa fa-quote-right fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-unordered-list" title="{% trans 'Unordered List' %} (Ctrl+U)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-unordered-list" title="{% trans 'Unordered List' %} (Ctrl+U)">
       <i class="fa fa-list-ul fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-ordered-list" title="{% trans 'Ordered List' %} (Ctrl+Shift+O)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-ordered-list" title="{% trans 'Ordered List' %} (Ctrl+Shift+O)">
       <i class="fa fa-list-ol fa-fw"></i>
     </button>
 
-    <button type="button" class="nav-item btn markdown-selector markdown-link" title="{% trans 'URL/Link' %} (Ctrl+L)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-link" title="{% trans 'URL/Link' %} (Ctrl+L)">
       <i class="fa fa-link fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-image-link" title="{% trans 'Insert Image Link' %} (Ctrl+Shift+I)">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-image-link" title="{% trans 'Insert Image Link' %} (Ctrl+Shift+I)">
       <i class="fa fa-picture-o fa-fw"></i>
     </button>
-    <label class="nav-item btn markdown-selector markdown-image-upload" title="{% trans 'Upload an Image' %}" style="margin-bottom:0">
+    <label class="nav-item btn btn-light markdown-selector markdown-image-upload" title="{% trans 'Upload an Image' %}" style="margin-bottom:0">
       <i class="fa fa-cloud-upload fa-fw"></i>
       <input name="markdown-image-upload" class="button" type="file" accept="image/*" title="{% trans 'Upload an Image' %}" hidden>
     </label>
-    <button type="button" class="nav-item btn markdown-selector markdown-emoji" title="{% trans 'Insert Emoji' %}">
+ <!--   <button type="button" class="nav-item btn btn-light markdown-selector markdown-emoji" title="{% trans 'Insert Emoji' %}">
       <i class="fa fa-smile-o fa-fw"></i>
-    </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-direct-mention" title="{% trans 'Direct Mention a User' %} (Ctrl+M)">
+    </button>-->
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-direct-mention" title="{% trans 'Direct Mention a User' %} (Ctrl+M)">
       <i class="fa fa-at fa-fw"></i>
     </button>
 
-    <button type="button" class="nav-item btn markdown-selector markdown-toggle-maximize" title="{% trans 'Full Screen' %}">
+    <button type="button" class="nav-item btn btn-light markdown-selector markdown-toggle-maximize" title="{% trans 'Full Screen' %}">
       <i class="fa fa-expand fa-fw"></i>
     </button>
-    <button type="button" class="nav-item btn markdown-selector markdown-help" title="{% trans 'Markdown Guide (Help)' %}">
+<!--    <button type="button" class="nav-item btn btn-light markdown-selector markdown-help" title="{% trans 'Markdown Guide (Help)' %}">
       <i class="fa fa-question-circle fa-fw"></i>
-    </button>
+    </button>-->
   </nav>
