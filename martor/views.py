@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models import Q
 
 from .api import imgur_uploader
@@ -14,9 +14,11 @@ from django import template
 from django.conf import settings
 import markdown
 import bleach
+import re
 from django.utils.safestring import mark_safe
 
 register = template.Library()
+User = get_user_model()
 
 def markdownify(text):
 
@@ -29,6 +31,8 @@ def markdownify(text):
     extensions = getattr(settings, 'MARKDOWNIFY_MARKDOWN_EXTENSIONS', [])
 
     # Convert markdown to html
+    print(mentions(text))
+    text = mentions(text)
     html = markdown.markdown(text, extensions=extensions)
 
     # Sanitize html if wanted
@@ -44,7 +48,10 @@ def markdownify(text):
 
     return mark_safe(html)
 
-
+def mentions(text):
+    url = getattr(settings, 'MARTOR_MARKDOWN_BASE_MENTION_URL', "dev.portfolio.robotuz.biz/u/")
+    text = re.sub(r'@\[(.*)\]', r'<a target="_blank" href="'+url+r'\1">\1</a>', text.rstrip())
+    return text
 
 def markdownfy_view(request):
     if request.method == 'POST':
@@ -90,12 +97,14 @@ def markdown_search_user(request):
     """
     data = {}
     username = request.GET.get('username')
+    print(username)
     if username is not None \
             and username != '' \
             and ' ' not in username:
         users = User.objects.filter(
             Q(username__icontains=username)
         ).filter(is_active=True)
+        print(users)
         if users.exists():
             data.update({
                 'status': 200,

@@ -1,13 +1,13 @@
 {% load i18n %}
 
-<div class="main-martor main-martor-{{ field_name }}" data-field-name="{{ field_name }}">
+<div class="main-martor main-martor-{{ field_name }} mb-2" data-field-name="{{ field_name }}">
   <div class="section-martor">
     <ul class="ui top attached nav nav-tabs tab-martor-menu">
-      <li class="nav-item item" data-tab="editor-tab-{{ field_name }}"><a class="nav-link active"><i class="fa fa-edit fa-fw"></i> {% trans "Editor" %}</a></li>
-      <li class="nav-item item" data-tab="preview-tab-{{ field_name }}"><a class="nav-link"><i class="fa fa-eye fa-fw"></i>{% trans "Preview" %}</a></li>
+      <li class="nav-link item active" data-tab="editor-tab-{{ field_name }}" onclick="hidePreview()"><i class="fa fa-edit fa-fw"></i> {% trans "Editor" %}</li>
+      <li class="nav-link item" data-tab="preview-tab-{{ field_name }}" onclick="hideEditor()"><i class="fa fa-eye fa-fw"></i>{% trans "Preview" %}</li>
       {% include "martor/toolbar.html" %}
     </ul>
-    <div class="ui bottom attached tab segment active" data-tab="editor-tab-{{ field_name }}">
+    <div class="ui bottom attached tab segment martor-editor" data-tab="editor-tab-{{ field_name }}" id="martor-editor">
       <div class="ui active dimmer upload-progress" style="display:none">
         <div class="ui text loader">{% trans "Uploading... please wait..." %}</div>
       </div>
@@ -15,11 +15,24 @@
       {{ martor }}
       <i class="fas fa-arrows-alt-v fa-fw expand-editor"></i>
     </div>
-    <div class="ui bottom attached tab segment martor-preview" data-tab="preview-tab-{{ field_name }}">
+    <div class="ui bottom attached tab segment martor-preview" data-tab="preview-tab-{{ field_name }}" id="martor-preview" style="display: none;">
       <p>{% trans "Nothing to preview" %}</p>
     </div>
   </div>
 
   {% include 'martor/guide.html' %}
   {% include 'martor/emoji.html' %}
+
+  <script>
+    function hideEditor() {
+      document.getElementById("martor-editor").style.display = "none";
+      document.getElementById("martor-preview").style.display = "inherit";
+    }
+
+    function hidePreview() {
+      document.getElementById("martor-editor").style.display = "inherit";
+      document.getElementById("martor-preview").style.display = "none";
+    }
+    
+  </script>
 </div>
